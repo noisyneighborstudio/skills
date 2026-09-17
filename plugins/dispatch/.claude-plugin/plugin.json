@@ -1,0 +1,9 @@
+{
+  "name": "dispatch",
+  "description": "Delegate remote work and collect a verified result, or use --pass to hand over the full task and workspace after a signed receiver acknowledgment.",
+  "version": "0.8.0",
+  "author": {
+    "name": "Seth Webster"
+  },
+  "keywords": ["dispatch", "delegate", "handoff", "remote", "agent", "ssh", "tmux"]
+}

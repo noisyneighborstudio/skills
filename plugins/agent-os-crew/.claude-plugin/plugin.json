@@ -1,0 +1,18 @@
+{
+  "name": "agent-os-crew",
+  "description": "Drive a disposable headless Linux desktop over HTTP: pixels in, keystrokes out, origin-bound credential fill, human handoff.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Noisy Neighbor Studio",
+    "url": "https://noisyneighbor.studio"
+  },
+  "license": "MIT",
+  "keywords": [
+    "computer-use",
+    "desktop",
+    "browser",
+    "credentials",
+    "vault",
+    "handoff"
+  ]
+}

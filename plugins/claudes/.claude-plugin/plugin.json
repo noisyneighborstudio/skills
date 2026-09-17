@@ -1,0 +1,17 @@
+{
+  "name": "claudes",
+  "description": "Run Claude Code across multiple isolated Claude accounts: pin a profile, rotate to the emptiest account, move sessions between accounts.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Noisy Neighbor Studio",
+    "url": "https://noisyneighbor.studio"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude",
+    "profiles",
+    "accounts",
+    "usage",
+    "sessions"
+  ]
+}

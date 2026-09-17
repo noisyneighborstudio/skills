@@ -1,0 +1,70 @@
+{
+  "name": "noisyneighbor",
+  "owner": {
+    "name": "Noisy Neighbor Studio",
+    "url": "https://noisyneighbor.studio"
+  },
+  "description": "Agent skills from Noisy Neighbor Studio.",
+  "plugins": [
+    {
+      "name": "which-agent-next",
+      "source": "./plugins/which-agent-next",
+      "description": "Pick the agent CLI or Claude profile with the most usage quota left, and print the command to run it.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Noisy Neighbor Studio",
+        "url": "https://noisyneighbor.studio"
+      },
+      "homepage": "https://github.com/noisyneighborstudio/which-agent-next",
+      "license": "MIT"
+    },
+    {
+      "name": "claudes",
+      "source": "./plugins/claudes",
+      "description": "Run Claude Code across multiple isolated Claude accounts: pin a profile, rotate to the emptiest account, move sessions between accounts.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Noisy Neighbor Studio",
+        "url": "https://noisyneighbor.studio"
+      },
+      "homepage": "https://github.com/noisyneighborstudio/claudes",
+      "license": "MIT"
+    },
+    {
+      "name": "agent-os-crew",
+      "source": "./plugins/agent-os-crew",
+      "description": "Drive a disposable headless Linux desktop over HTTP: pixels in, keystrokes out, origin-bound credential fill, human handoff.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Noisy Neighbor Studio",
+        "url": "https://noisyneighbor.studio"
+      },
+      "homepage": "https://github.com/noisyneighborstudio/skills",
+      "license": "MIT"
+    },
+    {
+      "name": "consensus",
+      "source": "./plugins/consensus",
+      "description": "Ask multiple AI model CLIs one question in parallel, then synthesize a canonical answer with dissent surfaced.",
+      "version": "0.2.1",
+      "author": {
+        "name": "Noisy Neighbor Studio",
+        "url": "https://noisyneighbor.studio"
+      },
+      "homepage": "https://github.com/noisyneighborstudio/skills",
+      "license": "MIT"
+    },
+    {
+      "name": "dispatch",
+      "source": "./plugins/dispatch",
+      "description": "Delegate remote work and collect a verified result, or use --pass to hand over the full task and workspace after a signed receiver acknowledgment.",
+      "version": "0.8.0",
+      "author": {
+        "name": "Noisy Neighbor Studio",
+        "url": "https://noisyneighbor.studio"
+      },
+      "homepage": "https://github.com/noisyneighborstudio/skills",
+      "license": "MIT"
+    }
+  ]
+}

@@ -15,6 +15,14 @@ Or with the open skills CLI:
 npx skills add noisyneighborstudio/skills --skill claudes
 ```
 
+## Install everywhere
+
+Installs or updates every plugin into Claude Code and Codex, and removes older duplicate copies. Grok loads Claude Code's plugins by itself.
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/noisyneighborstudio/skills/main/scripts/install.sh | bash
+```
+
 ## Plugins
 
 | Plugin | What it teaches the agent | Needs |

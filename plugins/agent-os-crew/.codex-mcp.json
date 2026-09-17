@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "crew-os": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "./mcp/crew_os_mcp.py"
+      ],
+      "cwd": "."
+    }
+  }
+}

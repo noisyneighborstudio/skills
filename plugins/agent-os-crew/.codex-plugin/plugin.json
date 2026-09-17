@@ -14,5 +14,7 @@
     "credentials",
     "vault",
     "handoff"
-  ]
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.codex-mcp.json"
 }

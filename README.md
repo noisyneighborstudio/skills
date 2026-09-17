@@ -21,7 +21,7 @@ npx skills add noisyneighborstudio/skills --skill claudes
 | --- | --- | --- |
 | [which-agent-next](./plugins/which-agent-next) | Pick the agent CLI or profile with the most quota left (`wan`) | `@sethwebster/which-agent-next` |
 | [claudes](./plugins/claudes) | Pin, rotate, and move sessions across Claude accounts | [Claudes](https://github.com/noisyneighborstudio/claudes) (macOS) |
-| [agent-os-crew](./plugins/agent-os-crew) | Drive a headless Linux desktop: input, browser, vault fill, human handoff | a running agent-os-crew box |
+| [agent-os-crew](./plugins/agent-os-crew) | Skill + `crew-os` MCP server (36 tools): drive a headless Linux desktop, vault fill, human handoff | `uv`, a running Crew OS |
 | [consensus](./plugins/consensus) | One question to many model CLIs, synthesized answer with dissent | `consensus` CLI |
 | [dispatch](./plugins/dispatch) | Delegate or hand off work to a remote machine and collect a verified result | ssh + tmux on the worker |
 

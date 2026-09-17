@@ -58,7 +58,7 @@
       "name": "dispatch",
       "source": "./plugins/dispatch",
       "description": "Delegate remote work and collect a verified result, or use --pass to hand over the full task and workspace after a signed receiver acknowledgment.",
-      "version": "0.8.0",
+      "version": "0.8.1",
       "author": {
         "name": "Noisy Neighbor Studio",
         "url": "https://noisyneighbor.studio"

@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/skills/dispatch/scripts/dispatch.mjs\" reminder-check --format json"
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/skills/dispatch/scripts/dispatch.mjs\" reminder-check"
           }
         ]
       }

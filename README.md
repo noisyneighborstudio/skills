@@ -27,4 +27,10 @@ npx skills add noisyneighborstudio/skills --skill claudes
 
 ## Maintenance
 
-Skills are vendored under `plugins/<name>/skills/<name>/`, and the source project stays canonical. When a skill changes upstream, copy it here and bump `version` in both `plugins/<name>/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
+Plugin files are vendored from their source repos, which stay canonical. Never edit a vendored file here; change it upstream, then:
+
+```sh
+./scripts/sync.sh   # pulls every vendored file via gh, prints what changed
+```
+
+Bump `version` for each changed plugin in both `plugins/<name>/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`, then commit. The mapping lives in `scripts/sync.sh`.

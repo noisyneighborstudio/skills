@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "agent-post": {
+      "command": "uv",
+      "args": ["run", "--script", "./mcp/agent_post_mcp.py"],
+      "cwd": ".",
+      "env": { "AGENT_POST_URL": "https://api.agentpost.cc" }
+    }
+  }
+}

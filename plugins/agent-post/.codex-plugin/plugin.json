@@ -1,0 +1,19 @@
+{
+  "name": "agent-post",
+  "description": "Give an agent its own email address. Self-registration with human approval, then receive, wait on, and reply to real mail.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Noisy Neighbor Studio",
+    "url": "https://noisyneighbor.studio"
+  },
+  "license": "MIT",
+  "keywords": [
+    "email",
+    "identity",
+    "inbox",
+    "verification",
+    "smtp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.codex-mcp.json"
+}

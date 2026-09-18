@@ -1,7 +1,7 @@
 {
   "name": "agent-os-crew",
   "description": "Drive Crew OS, a headless Linux desktop, via bundled MCP tools and a skill: pixels in, keystrokes out, origin-bound credential fill, human handoff.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "Noisy Neighbor Studio",
     "url": "https://noisyneighbor.studio"

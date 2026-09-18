@@ -5,7 +5,7 @@
 set -uo pipefail
 REPO=noisyneighborstudio/skills
 MP=noisyneighbor
-PLUGINS=(which-agent-next claudes agent-os-crew consensus dispatch)
+PLUGINS=(which-agent-next claudes agent-os-crew consensus dispatch agent-post)
 BACKUP="$HOME/.skill-backups/$(date +%Y%m%d%H%M%S)"
 fail=0
 
@@ -63,5 +63,23 @@ if command -v grok >/dev/null; then
   for p in "${PLUGINS[@]}"; do retire "$HOME/.grok/skills/$p"; done
   command -v claude >/dev/null || { echo "  ! grok needs claude installed to see these plugins"; fail=1; }
 fi
+
+# agent-post ships a python entry point that is both the MCP server and a CLI. The shim lets
+# a person run the same onboarding an agent does, without knowing where the plugin landed.
+shim() {
+  root=""
+  for c in "$HOME/.claude/plugins/marketplaces/$MP/plugins/agent-post/mcp/agent_post_mcp.py" \
+           "$HOME/.claude/plugins/cache/$MP/agent-post/mcp/agent_post_mcp.py"; do
+    [ -f "$c" ] && { root="$c"; break; }
+  done
+  [ -n "$root" ] || return 0
+  command -v uv >/dev/null || { echo "  ! agent-post needs uv: https://docs.astral.sh/uv/"; fail=1; return 0; }
+  mkdir -p "$HOME/.local/bin"
+  printf '#!/usr/bin/env bash\nexec uv run --script "%s" "$@"\n' "$root" > "$HOME/.local/bin/agent-post"
+  chmod +x "$HOME/.local/bin/agent-post"
+  echo "+ agent-post CLI -> ~/.local/bin/agent-post"
+  case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) echo "  ! add ~/.local/bin to PATH to use it" ;; esac
+}
+shim
 
 exit $fail

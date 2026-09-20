@@ -5,7 +5,7 @@
 set -uo pipefail
 REPO=noisyneighborstudio/skills
 MP=noisyneighbor
-PLUGINS=(which-agent-next claudes agent-os-crew consensus dispatch agent-post)
+PLUGINS=(which-agent-next claudes agent-os-crew consensus dispatch agent-post jev)
 BACKUP="$HOME/.skill-backups/$(date +%Y%m%d%H%M%S)"
 fail=0
 
@@ -64,22 +64,35 @@ if command -v grok >/dev/null; then
   command -v claude >/dev/null || { echo "  ! grok needs claude installed to see these plugins"; fail=1; }
 fi
 
-# agent-post ships a python entry point that is both the MCP server and a CLI. The shim lets
-# a person run the same onboarding an agent does, without knowing where the plugin landed.
-shim() {
+# Some plugins ship an entry point that is both the MCP server and a CLI. A shim lets a
+# person run the same thing the agent does, without knowing where the plugin landed.
+runner_hint() {
+  case $1 in
+    uv)   echo "https://docs.astral.sh/uv/" ;;
+    node) echo "Node 20 or newer, https://nodejs.org" ;;
+    *)    echo "not on PATH" ;;
+  esac
+}
+shim() {  # plugin relative-path command-name runner...
+  plugin=$1 rel=$2 binary=$3; shift 3
   root=""
-  for c in "$HOME/.claude/plugins/marketplaces/$MP/plugins/agent-post/mcp/agent_post_mcp.py" \
-           "$HOME/.claude/plugins/cache/$MP/agent-post/mcp/agent_post_mcp.py"; do
+  for c in "$HOME/.claude/plugins/marketplaces/$MP/plugins/$plugin/$rel" \
+           "$HOME/.claude/plugins/cache/$MP/$plugin/$rel"; do
     [ -f "$c" ] && { root="$c"; break; }
   done
   [ -n "$root" ] || return 0
-  command -v uv >/dev/null || { echo "  ! agent-post needs uv: https://docs.astral.sh/uv/"; fail=1; return 0; }
+  command -v "$1" >/dev/null || { echo "  ! $plugin needs $1: $(runner_hint "$1")"; fail=1; return 0; }
   mkdir -p "$HOME/.local/bin"
-  printf '#!/usr/bin/env bash\nexec uv run --script "%s" "$@"\n' "$root" > "$HOME/.local/bin/agent-post"
-  chmod +x "$HOME/.local/bin/agent-post"
-  echo "+ agent-post CLI -> ~/.local/bin/agent-post"
+  printf '#!/usr/bin/env bash\nexec %s "%s" "$@"\n' "$*" "$root" > "$HOME/.local/bin/$binary"
+  chmod +x "$HOME/.local/bin/$binary"
+  echo "+ $plugin CLI -> ~/.local/bin/$binary"
   case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) echo "  ! add ~/.local/bin to PATH to use it" ;; esac
 }
-shim
+shim agent-post mcp/agent_post_mcp.py agent-post uv run --script
+shim jev mcp/jev_mcp.mjs jev node
+
+# Jev needs a provider key once. Only say so when there isn't one already.
+[ -f "$HOME/.config/agent-tools/jev.env" ] || [ -n "${OPENROUTER_API_KEY:-}" ] || \
+  echo '  ! jev needs a key: printf %s "$OPENROUTER_API_KEY" | jev --set-key'
 
 exit $fail

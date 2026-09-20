@@ -33,12 +33,13 @@ curl -fsSL https://raw.githubusercontent.com/noisyneighborstudio/skills/main/scr
 | [consensus](./plugins/consensus) | One question to many model CLIs, synthesized answer with dissent | `consensus` CLI |
 | [dispatch](./plugins/dispatch) | Delegate or hand off work to a remote machine and collect a verified result | ssh + tmux on the worker |
 | [agent-post](./plugins/agent-post) | Skill + `agent-post` MCP server (17 tools) and CLI: give the agent its own email address, then receive, wait on, and reply to real mail | `uv`, a human to approve the identity |
+| [jev](./plugins/jev) | Skill + `jev` MCP server: batch bounded judgments (relevance, triage, classification, scoring) into calibrated probabilities | Node 20+, an OpenRouter key |
 
 ## Maintenance
 
-Plugin files are vendored from their source repos, which stay canonical. `agent-post` is the
-exception: it has no public source repo yet, so its files are edited here until one exists and
-a `sync.sh` mapping is added. Never edit a vendored file here; change it upstream, then:
+Plugin files are vendored from their source repos, which stay canonical. `agent-post` and `jev`
+are the exceptions: neither has a public source repo yet, so their files are edited here until one
+exists and a `sync.sh` mapping is added. Never edit a vendored file here; change it upstream, then:
 
 ```sh
 ./scripts/sync.sh   # pulls every vendored file via gh, prints what changed

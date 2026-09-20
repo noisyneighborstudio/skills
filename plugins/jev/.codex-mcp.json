@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "jev": {
+      "command": "node",
+      "args": ["./mcp/jev_mcp.mjs"],
+      "cwd": "."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "jev",
+  "description": "Offload batches of bounded judgments to Jev, a probabilistic decision model: relevance filtering, triage, classification and scoring, returned as calibrated distributions.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Noisy Neighbor Studio",
+    "url": "https://noisyneighbor.studio"
+  },
+  "license": "MIT",
+  "keywords": [
+    "decisions",
+    "triage",
+    "classification",
+    "relevance",
+    "probability",
+    "openrouter"
+  ]
+}

@@ -479,11 +479,12 @@ async def vault_capture_totp(name: str) -> dict:
     """During 2FA enrolment, read the setup key off the active tab and store it as the TOTP secret of
     entry `name`. Returns metadata only ({ok, name, has_totp, source}) -- never the secret.
 
-    The server scrapes the page itself: an otpauth:// URI anywhere in the DOM, else a visible
-    base32 key ("Can't scan the QR code?" text) in any case or grouping. It does not decode QR
-    pixels, so reveal the text key first if the site hides it behind a link. Same origin binding
-    as `vault_fill`: create the entry with `origins` first, and a 403 means the wrong site or tab.
-    A 404 means no key was found; a 400 means the key was rejected. Neither touches the entry.
+    The server scrapes the page itself: an otpauth:// URI anywhere in the DOM, else an
+    authenticator QR code drawn as an image, SVG or canvas (screenshotted and decoded server-side),
+    else a visible base32 key ("Can't scan the QR code?" text) in any case or grouping. Same origin
+    binding as `vault_fill`: create the entry with `origins` first, and a 403 means the wrong site
+    or tab. A 404 means no key was found; a 400 means the key was rejected; a 409 means several
+    different authenticator QR codes were on the page. None of them touches the entry.
     Then confirm enrolment with `vault_fill(name, "totp", submit=true)`."""
     return await call("POST", "/vault/capture_totp", json={"name": name})
 

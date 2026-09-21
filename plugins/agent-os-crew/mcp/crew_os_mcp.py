@@ -429,9 +429,9 @@ async def vault_create(name: str, username: Optional[str] = None,
     `origins` is the binding that makes fill safe: ["https://github.com", "*.github.com"]. A wildcard
     matches subdomains over https only. Without an origin, filling into a browser is refused
     outright, so set it when you create the entry. `apps` binds to X window classes (see `windows`)
-    for native programs. `totp_secret` takes base32 or an otpauth:// URI -- and if the setup key is
-    on screen during 2FA enrolment, the server can scrape it into the enclave itself
-    (POST /vault/capture_totp) so the shared secret never passes through you at all.
+    for native programs. `totp_secret` takes base32 or an otpauth:// URI -- but if the setup key is
+    on screen during 2FA enrolment, use `vault_capture_totp` instead, so the shared secret never
+    passes through you at all.
 
     Avoid pasting a human's existing password through here: that puts it in your context. The
     `bin/crew-cred` helper on their Mac posts it straight into the enclave instead."""
@@ -472,6 +472,20 @@ async def vault_fill(name: str, field: str = "password", submit: bool = False,
     a *real* `mouse_click`, then `webauthn_capture`) and stop using the password."""
     return await call("POST", "/vault/fill",
                       json={"name": name, "field": field, "submit": submit, "tab_after": tab_after})
+
+
+@server.tool()
+async def vault_capture_totp(name: str) -> dict:
+    """During 2FA enrolment, read the setup key off the active tab and store it as the TOTP secret of
+    entry `name`. Returns metadata only ({ok, name, has_totp, source}) -- never the secret.
+
+    The server scrapes the page itself: an otpauth:// URI anywhere in the DOM, else a visible
+    base32 key ("Can't scan the QR code?" text) in any case or grouping. It does not decode QR
+    pixels, so reveal the text key first if the site hides it behind a link. Same origin binding
+    as `vault_fill`: create the entry with `origins` first, and a 403 means the wrong site or tab.
+    A 404 means no key was found; a 400 means the key was rejected. Neither touches the entry.
+    Then confirm enrolment with `vault_fill(name, "totp", submit=true)`."""
+    return await call("POST", "/vault/capture_totp", json={"name": name})
 
 
 # ---------------- passkeys ----------------

@@ -1,7 +1,7 @@
 {
   "name": "which-agent-next",
   "description": "Pick the agent CLI or Claude profile with the most usage quota left, and print the command to run it.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Noisy Neighbor Studio",
     "url": "https://noisyneighbor.studio"

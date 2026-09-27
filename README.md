@@ -34,11 +34,12 @@ curl -fsSL https://raw.githubusercontent.com/noisyneighborstudio/skills/main/scr
 | [dispatch](./plugins/dispatch) | Delegate or hand off work to a remote machine and collect a verified result | ssh + tmux on the worker |
 | [agent-post](./plugins/agent-post) | Skill + `agent-post` MCP server (17 tools) and CLI: give the agent its own email address, then receive, wait on, and reply to real mail | `uv`, a human to approve the identity |
 | [jev](./plugins/jev) | Skill + `jev` MCP server: batch bounded judgments (relevance, triage, classification, scoring) into calibrated probabilities | Node 20+, an OpenRouter key |
+| [build-dashboard](./plugins/build-dashboard) | Skill + `dashboard-builder` agent: a live HTML progress dashboard per long job (tasks, questions with defaults, deliverables, stuck), redrawn every 3 s without reloading | Python 3 and `jq` (for the folder-lock hook); the `dataviz` skill if you have it |
 
 ## Maintenance
 
-Plugin files are vendored from their source repos, which stay canonical. `agent-post` and `jev`
-are the exceptions: neither has a public source repo yet, so their files are edited here until one
+Plugin files are vendored from their source repos, which stay canonical. `agent-post`, `jev` and `build-dashboard`
+are the exceptions: none has a public source repo yet, so their files are edited here until one
 exists and a `sync.sh` mapping is added. Never edit a vendored file here; change it upstream, then:
 
 ```sh

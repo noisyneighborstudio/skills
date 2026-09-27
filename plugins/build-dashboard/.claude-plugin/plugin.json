@@ -1,0 +1,9 @@
+{
+  "name": "build-dashboard",
+  "description": "Live progress dashboards for long-running agent work: one self-refreshing HTML file per job that shows tasks, questions waiting on you (with the default taken), deliverables and what's stuck, updated in near real time.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Seth Webster"
+  },
+  "keywords": ["dashboard", "progress", "status", "long-running", "agent", "html"]
+}

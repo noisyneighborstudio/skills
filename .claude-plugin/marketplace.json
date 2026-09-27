@@ -89,6 +89,18 @@
       },
       "homepage": "https://github.com/noisyneighborstudio/skills",
       "license": "MIT"
+    },
+    {
+      "name": "build-dashboard",
+      "source": "./plugins/build-dashboard",
+      "description": "Live progress dashboards for long-running agent work: one self-refreshing HTML file per job showing tasks, questions waiting on you (with the default taken), deliverables and what's stuck.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Noisy Neighbor Studio",
+        "url": "https://noisyneighbor.studio"
+      },
+      "homepage": "https://github.com/noisyneighborstudio/skills",
+      "license": "MIT"
     }
   ]
 }
